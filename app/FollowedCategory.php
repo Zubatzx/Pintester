@@ -17,6 +17,6 @@ class FollowedCategory extends Model
     }
 
     public function user(){
-    	rerturn $this->belongsTo('App\User','userID');
+    	return $this->belongsTo('App\User','userID');
     }
 }

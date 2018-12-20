@@ -18,6 +18,10 @@ Route::get('/', function () {
 //home
 Route::get('/home', 'HomeController@index')->name('home');
 
+//middleware
+Route::get('/filter', 'HomeController@filterByFollowedCategory')->name('filter');
+Route::get('/all', 'HomeController@viewAll')->name('viewAll');
+
 //login
 Route::get('/login', 'LoginController@index')->name('indexLogin');
 Route::post('/login', 'LoginController@logIn')->name('logIn');
@@ -28,3 +32,8 @@ Route::resource('register', 'RegisterController');
 
 //post
 Route::get('/post/{id}', 'PostController@index')->name('postDetail');
+
+//middleware(klo dah login)
+Route::get('/mypost/{id}', 'PostController@myPostIndex')->name('myPost');
+Route::get('/createpost', 'PostController@createPostIndex')->name('createPost');
+Route::post('/addpost', 'PostController@addPost')->name('addPost');

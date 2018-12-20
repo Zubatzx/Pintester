@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="{{ asset('assets/mobirise/css/mbr-additional.css') }}" type="text/css">
         <link rel="stylesheet" href="{{ asset('assets/comment/style.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/global/global.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/axure/styles.css') }}">
         <style>
 
         </style>
@@ -71,7 +72,7 @@
                         Cart&nbsp;</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link link text-white display-4" href=""><span class="mbri-website-theme mbr-iconfont mbr-iconfont-btn"></span>
+                            <a class="nav-link link text-white display-4" href="{{ route('myPost', ['id' => session()->get('userID')]) }}"><span class="mbri-website-theme mbr-iconfont mbr-iconfont-btn"></span>
                         My Post&nbsp;</a>
                         </li>
                     </ul>
@@ -155,7 +156,7 @@
         </div>
     </section>
         <!-- Scripts -->
-        <script src="{{ asset('sassets/web/assets/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/web/assets/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('assets/popper/popper.min.js') }}"></script>
         <script src="{{ asset('assets/tether/tether.min.js') }}"></script>
         <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
@@ -165,5 +166,6 @@
         <script src="{{ asset('assets/parallax/jarallax.min.js') }}"></script>
         <script src="{{ asset('assets/theme/js/script.js') }}"></script>
         <script src="{{ asset('assets/formoid/formoid.min.js') }}"></script>
+        @yield('script')
     </body>
 </html>

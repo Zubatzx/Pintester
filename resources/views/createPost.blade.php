@@ -6,8 +6,8 @@
 <section class="cid-raLSBQAxbV">
 	<div class="container">
 		<div class="row justify-content-center">
-            <div class="media-container-column col-lg-8" data-form-type="formoid">          
-                <form class="mbr-form" action="{{ route('addPost') }}" method="post" enctype="multipart/form-data">
+            <div class="media-container-column col-lg-8">          
+                <form action="{{ route('addPost') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @if(isset($errors))
                     <p style="font-weight: bold; color: red">{{ $errors->first() }}</p>

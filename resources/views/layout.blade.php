@@ -83,7 +83,7 @@
             </nav>
         @endif
         </section>
-        <div class="row" style="transform: translateY(200%); z-index: 1000; background-color: rgb(35, 35, 35); color: white; font-size: 25px; position: fixed; width: 101%">
+        <div class="row" style="transform: translateY(200%); z-index: 1000; background-color: #333333; color: white; font-size: 25px; position: fixed; width: 101%">
             <div class="col-md-6" align="left" style="width: 100%">
             @if(session()->get('name') != "")
                 welcome, {{ session()->get('name') }}
@@ -165,7 +165,6 @@
         <script src="{{ asset('assets/touchswipe/jquery.touch-swipe.min.js') }}"></script>
         <script src="{{ asset('assets/parallax/jarallax.min.js') }}"></script>
         <script src="{{ asset('assets/theme/js/script.js') }}"></script>
-        <script src="{{ asset('assets/formoid/formoid.min.js') }}"></script>
         @yield('script')
     </body>
 </html>

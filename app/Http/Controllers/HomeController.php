@@ -90,12 +90,12 @@ class HomeController extends Controller
         $followedCategory = DB::table('followed_categories')->where('userID', '=', Session::get('userID'))->select('categoryID');
         $posts = DB::table('posts')->whereIn('categoryID', $followedCategory)->paginate(10);
         
-        return response()->json($posts);
+        return response()->view('filterHome', compact('posts'));
     }
 
     public function viewAll(){
         $posts = DB::table('posts')->paginate(10);
 
-        return response()->json($posts);
+        return response()->view('filterHome', compact('posts'));
     }
 }

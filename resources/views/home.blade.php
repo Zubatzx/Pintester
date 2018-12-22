@@ -44,12 +44,13 @@
 @endsection
 
 @section('script')
-<!-- <script type="text/javascript">
+<script type="text/javascript">
     $('#btn-filter').click(function(){
         if($('#btn-filter').text() == 'Filter by My Followed Category'){
             filterByFollowedCategory();
             $('#btn-filter').text('View All');
         }else{
+            viewAll();
             $('#btn-filter').text('Filter by My Followed Category');
         }
     });
@@ -58,32 +59,24 @@
         $.ajax({
             url: "{{route('filter')}}",
             async: false,
-            dataType: "json",
+            dataType: "html",
             success: function(response){
-                loadPost(response.data);
+                console.log(response);
+                $('#allPost').html(response);
             }
         });
     }
 
     function viewAll(){
-
+        $.ajax({
+            url: "{{route('viewAll')}}",
+            async: false,
+            dataType: "html",
+            success: function(response){
+                console.log(response);
+                $('#allPost').html(response);
+            }
+        });
     }
-
-    function loadPost(datacall){
-        strHTML = "";
-        for(inde =0; inde < datacall.length; inde++){
-            strHTML += "<div class='p-3 col-md-6' style='margin: 10px 0px;'>" +
-                "<a href='{{ route('postDetail', ['id' => $post->postID]) }}'>" +
-                        "<img class='card-img-top' src='{{asset('assets/images/posts/'.datacall[inde].picture)}}' alt='{{$post->title}}' style='object-fit: contain; height: 500px;'>" +
-                "</a>" +
-                "<div>" +
-                "<p class='card-text text-center'>{{$post->title}}</p>" +
-                "<p class='card-text text-center'>{{$post->caption}}</p>" +
-                "</div>" +
-            "</div>";
-        }
-        
-        $('#allPost').html(strHTML);
-    }
-</script> -->
+</script>
 @endsection

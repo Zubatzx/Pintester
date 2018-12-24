@@ -37,8 +37,12 @@ Route::get('/post/{id}', 'PostController@index')->name('postDetail');
 Route::get('/mypost/{id}', 'PostController@myPostIndex')->name('myPost');
 Route::get('/createpost', 'PostController@createPostIndex')->name('createPost');
 Route::post('/addpost', 'PostController@addPost')->name('addPost');
+Route::get('/deletepost/{id}', 'PostController@deletePost')->name('deletePost');
+Route::get('/addtocart/{user}/{id}', 'PostController@addToCart')->name('addToCart');
+Route::post('/comment/{id}', 'PostController@addComment')->name('addComment');
 
 //cart
+//middleware(klo dah login)
 Route::get('/cart/{id}', 'CartController@index')->name('myCart');
 Route::get('/deleteFromCart/{id}', 'CartController@deleteFromCart')->name('deleteFromCart');
 Route::get('/checkout/{id}', 'CartController@checkout')->name('checkout');

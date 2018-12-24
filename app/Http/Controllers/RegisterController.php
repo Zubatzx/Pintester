@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\User;
+use App\Cart;
 use DB;
 
 class RegisterController extends Controller
@@ -67,6 +68,12 @@ class RegisterController extends Controller
         $insert->profilePicture = $filename;
 
         $insert->save();
+
+        $cart = new Cart();
+        $cart->userID = $lastInsertedID;
+        $cart->totalPrice = 0;
+
+        $cart->save();
         
         return redirect()->back();
     }

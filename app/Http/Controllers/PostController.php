@@ -9,6 +9,8 @@ use Session;
 use App\Post;
 use App\DetailComment;
 use App\Category;
+use App\Cart;
+use App\DetailCart;
 
 class PostController extends Controller
 {
@@ -136,5 +138,36 @@ class PostController extends Controller
         $insert->save();
 
         return redirect()->route('myPost', session()->get('userID'));
+    }
+
+    public function deletePost($id){
+        //kacau, jadi fk di table lain, gw dah terlanjut buat jadi males ganti, maapkeun
+        $deletePost = Post::find($id)->delete();
+
+        return redirect('/home');
+    }
+
+    public function addToCart($user, $id){
+        $cart = Cart::where('userID','=', $user)->first();
+        $detailCart = DetailCart::where('postID', '=', $id)->get();
+        if($detailCart->isEmpty()){
+            $post = DB::table('posts')->where('postID','=',$id)->get();
+    
+            $cart->totalPrice = $cart->totalPrice + $post[0]->price;
+            $cart->save();
+
+            $detailCart = new DetailCart();
+            $detailCart->cartID = $cart->cartID;
+            $detailCart->postID = $id;
+            $detailCart->save();
+
+            return redirect()->back();
+        }else{
+            return redirect()->back()->withErrors("Item sudah ada di cart!!");
+        }
+    }
+
+    public function addComment($id){
+        dd($id);
     }
 }

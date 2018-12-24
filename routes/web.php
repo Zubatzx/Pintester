@@ -37,3 +37,8 @@ Route::get('/post/{id}', 'PostController@index')->name('postDetail');
 Route::get('/mypost/{id}', 'PostController@myPostIndex')->name('myPost');
 Route::get('/createpost', 'PostController@createPostIndex')->name('createPost');
 Route::post('/addpost', 'PostController@addPost')->name('addPost');
+
+//cart
+Route::get('/cart/{id}', 'CartController@index')->name('myCart');
+Route::get('/deleteFromCart/{id}', 'CartController@deleteFromCart')->name('deleteFromCart');
+Route::get('/checkout/{id}', 'CartController@checkout')->name('checkout');

@@ -76,7 +76,7 @@
                         My Post&nbsp;</a>
                         </li>
                     </ul>
-                    <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="{{ url('profile') }}"><span class="mbr-iconfont mbr-iconfont-btn"><img class="rounded-circle profilePicture" src="{{asset('assets/images/users/'.session()->get('profilePicture'))}}" alt="{{ session()->get('name') }}" /></span>{{ session()->get('name') }}</a>
+                    <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="{{ route('profile', ['id' => session()->get('userID')]) }}"><span class="mbr-iconfont mbr-iconfont-btn"><img class="rounded-circle profilePicture" src="{{asset('assets/images/users/'.session()->get('profilePicture'))}}" alt="{{ session()->get('name') }}" /></span>{{ session()->get('name') }}</a>
                     <a class="btn btn-md btn-secondary display-4" href="{{ route('logOut') }}"><span class="mbri-paper-plane mbr-iconfont mbr-iconfont-btn"></span>Logout</a>
                     
                 </div>

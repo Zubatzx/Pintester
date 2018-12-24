@@ -68,7 +68,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
                         <li class="nav-item">
-                            <a class="nav-link link text-white display-4" href=""><span class="mbri-shopping-cart mbr-iconfont mbr-iconfont-btn"></span>
+                            <a class="nav-link link text-white display-4" href="{{ route('myCart', ['id' => session()->get('userID')]) }}"><span class="mbri-shopping-cart mbr-iconfont mbr-iconfont-btn"></span>
                         Cart&nbsp;</a>
                         </li>
                         <li class="nav-item">
@@ -130,13 +130,13 @@
                     <div class="col-md-6">
                         <div class="social-list align-right">
                             <div class="soc-item">
-                                <a href="https://twitter.com/" target="_blank">
-                                    <span class="socicon-twitter socicon mbr-iconfont mbr-iconfont-social"></span>
+                                <a href="https://www.facebook.com/adit.pointb" target="_blank">
+                                <span class="socicon-facebook socicon mbr-iconfont mbr-iconfont-social"></span>
                                 </a>
                             </div>
                             <div class="soc-item">
-                                <a href="https://www.facebook.com/adit.pointb" target="_blank">
-                                <span class="socicon-facebook socicon mbr-iconfont mbr-iconfont-social"></span>
+                                <a href="https://twitter.com/" target="_blank">
+                                    <span class="socicon-twitter socicon mbr-iconfont mbr-iconfont-social"></span>
                                 </a>
                             </div>
                             <div class="soc-item">

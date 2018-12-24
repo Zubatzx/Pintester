@@ -26,7 +26,7 @@
 
         </style>
     </head>
-    <body>
+    <body onload="startTime()">
         <section class="menu cid-qTkzRZLJNu" once="menu" id="menu1-0">
         @if(session()->get('userID') == "")
             <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
@@ -83,14 +83,14 @@
             </nav>
         @endif
         </section>
-        <div class="row" style="transform: translateY(200%); z-index: 1000; background-color: rgb(35, 35, 35); color: white; font-size: 25px; position: fixed; width: 101%">
-            <div class="col-md-6" align="left" style="width: 100%">
+        <div class="row" style="transform: translateY(200%); z-index: 1000; background-color: #333333; color: white; font-size: 25px; position: fixed; width: 101%">
+            <div class="col-md-6 mbr-fonts-style" align="left" style="width: 100%;">
             @if(session()->get('name') != "")
                 welcome, {{ session()->get('name') }}
             @endif
             </div>
-            <div class="col-md-6" align="right" style="width: 100%">
-                jam
+            <div class="col-md-6 mbr-fonts-style" align="right" style="width: 100%">
+                {{ date('d-M-Y') }}, <span id="jam"></span>
             </div>
         </div>
         <div>
@@ -165,7 +165,22 @@
         <script src="{{ asset('assets/touchswipe/jquery.touch-swipe.min.js') }}"></script>
         <script src="{{ asset('assets/parallax/jarallax.min.js') }}"></script>
         <script src="{{ asset('assets/theme/js/script.js') }}"></script>
-        <script src="{{ asset('assets/formoid/formoid.min.js') }}"></script>
+        <script>
+            function startTime() {
+                var today = new Date();
+                var h = today.getHours();
+                var m = today.getMinutes();
+                var s = today.getSeconds();
+                m = checkTime(m);
+                s = checkTime(s);
+                document.getElementById('jam').innerHTML = h + ":" + m + ":" + s;
+                var t = setTimeout(startTime, 500);
+            }
+            function checkTime(i) {
+                if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+                return i;
+            }
+        </script>
         @yield('script')
     </body>
 </html>

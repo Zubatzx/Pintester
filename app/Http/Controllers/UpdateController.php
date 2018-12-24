@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\User;
 use DB;
 
-class RegisterController extends Controller
+class UpdateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        return view('register');
+        return view('update');
     }
 
     /**
@@ -37,38 +37,7 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = Validator::make($request->all(), [
-            'name' => 'required|min:5',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|alpha_num|min:8',
-            'confirmPassword' => 'required|same:password',
-            'gender' => 'required',
-            'profilePicture' => 'required|image|mimes:jpeg,png,jpg'
-        ]);
-
-        if($validate->fails()){
-            return redirect()->back()->withErrors($validate)->withInput($request->all());
-        }
-
-        $insert = new User();
-        $insert->name = $request->name;
-        $insert->email = $request->email;
-        $insert->password = $request->password;
-        $insert->gender = $request->gender;
-        $insert->profilePicture = "";
-        $insert->isAdmin = 0;
-
-        $insert->save();
-        $lastInsertedID = $insert->userID;
-
-        $image = $request->file('profilePicture');
-        $filename = 'user'.$lastInsertedID.'.'.$image->getClientOriginalExtension();
-        $image->move('assets/images/users/', $filename);
-        $insert->profilePicture = $filename;
-
-        $insert->save();
         
-        return redirect()->back();
     }
 
     /**
@@ -103,7 +72,28 @@ class RegisterController extends Controller
     public function update(Request $request, $id)
     {
         
-      
+        $validate = Validator::make($request->all(), [
+            'name' => 'required|min:5',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|alpha_num|min:8',
+            'gender' => 'required'
+        ]);
+
+        if($validate->fails()){
+            return redirect()->back()->withErrors($validate)->withInput($request->all());
+        }
+
+        $update = User::find($id);
+        $update->name = $request->name;
+        $update->email = $request->email;
+        $update->password = $request->password;
+        $update->gender = $request->gender;
+        $update->isAdmin = 0;
+
+        $update->save();
+
+        
+        return redirect()->back();
     }
 
     /**

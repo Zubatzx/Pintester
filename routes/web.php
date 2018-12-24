@@ -30,6 +30,12 @@ Route::get('/logout', 'LoginController@logOut')->name('logOut');
 //register
 Route::resource('register', 'RegisterController');
 
+//update
+Route::resource('update', 'UpdateController');
+
+//profile
+Route::resource('profile', 'ProfileController');
+
 //post
 Route::get('/post/{id}', 'PostController@index')->name('postDetail');
 

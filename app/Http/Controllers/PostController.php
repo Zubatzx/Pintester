@@ -167,7 +167,18 @@ class PostController extends Controller
         }
     }
 
-    public function addComment($id){
-        dd($id);
+    public function addComment($id, Request $request){
+        $comment = new DetailComment();
+        $comment->comment = $request->comment;
+        $comment->userID = Session::get('userID');
+        $comment->postID = $id;
+
+        $comment->save();
+
+        $post = DB::table('posts')->join('users', 'posts.userID', '=', 'users.userID')->join('categories', 'posts.categoryID', '=', 'categories.categoryID')->where('posts.postID','=',$id)->select('posts.*','users.name as username','users.profilePicture', 'categories.name as category')->get();
+
+        $comments = DB::table('detail_comments')->join('posts', 'detail_comments.postID', '=', 'posts.postID')->join('users', 'users.userID', '=', 'detail_comments.userID')->where('detail_comments.postID','=',$id)->select('detail_comments.comment','users.profilePicture', 'users.name')->get();
+        
+        return view('postDetail', compact('post', 'comments'));
     }
 }

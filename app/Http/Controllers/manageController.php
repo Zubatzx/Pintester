@@ -15,6 +15,12 @@ class manageController extends Controller
     	return view('manageUser', compact('users'));
     }
 
+    public function indexEditUser($id){
+    	$user = User::find($id);
+
+    	return view('editUser', compact('user'));
+    }
+
     public function indexCategory(){
     	$categories = Category::all();
 

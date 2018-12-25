@@ -35,19 +35,19 @@
                                     <input type="email" class="form-control" name="email" value="{{ old('email') }}"required>
                                 </div>
                             </div>
-                            <div class="col-md-10 multi-horizontal" data-for="phone">
+                            <div class="col-md-10 multi-horizontal" data-for="password">
                                 <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="password-form1-5">Password</label>
                                     <input type="password" class="form-control" name="password" value="{{ old('password') }}" required>
                                 </div>
                             </div>
-                            <div class="col-md-10 multi-horizontal" data-for="phone">
+                            <div class="col-md-10 multi-horizontal" data-for="confpass">
                                 <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="confirmPassword-form1-5">Confirm Password</label>
                                     <input type="password" class="form-control" name="confirmPassword" value="{{ old('confirmPassword') }}"required>
                                 </div>
                             </div>
-                            <div class="col-md-3 multi-horizontal" data-for="phone">
+                            <div class="col-md-3 multi-horizontal" data-for="gender">
                                 <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="gender-form1-5">Gender</label>
                                     <select class="form-control" name="gender">
@@ -56,7 +56,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-3 multi-horizontal" data-for="phone">
+                            <div class="col-md-3 multi-horizontal" data-for="photo">
                                 <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="profilePicture-form1-5">Photo</label>
                                     <input type="file" class="form-control" name="profilePicture">

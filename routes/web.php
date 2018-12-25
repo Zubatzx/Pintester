@@ -59,6 +59,7 @@ Route::get('/viewAll', 'ViewController@indexAll')->name('indexViewAll');
 //manage
 //middleware(kalo admin)
 Route::get('/indexUser', 'manageController@indexUser')->name('indexUser');
+Route::get('/editUser/{id}', 'manageController@indexEditUser')->name('indexEditUser');
 
 Route::get('/indexCategory', 'manageController@indexCategory')->name('indexCategory');
 Route::get('/addCategory', 'manageController@indexAddCategory')->name('indexAddCategory');

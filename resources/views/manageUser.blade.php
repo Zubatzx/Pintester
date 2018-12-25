@@ -22,7 +22,7 @@
 					<td>{{ $user->name }}</td>
 					<td>{{ $user->email }}</td>
 					<td>{{ $user->gender }}</td>
-					<td><a href="">Edit</a></td>
+					<td><a href="{{route('indexEditUser', ['id' => $user->userID])}}">Edit</a></td>
 				</tr>
 				@endforeach
 			</tbody>

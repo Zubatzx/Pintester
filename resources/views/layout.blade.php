@@ -69,8 +69,13 @@
                     <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
                     @if(session()->get('isAdmin') == 1)
                         <li class="nav-item">
-                            <a class="nav-link link text-white display-4" href=""><span class="mbri-change-style mbr-iconfont mbr-iconfont-btn"></span>
+                            <a class="nav-link link text-white display-4 dropdown-toggle" href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="mbri-change-style mbr-iconfont mbr-iconfont-btn"></span>
                         Edit&nbsp;</a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="left: 1050px; width: 40px">
+                                <a class="dropdown-item" href="{{ route('indexUser') }}">Edit User</a>
+                                <a class="dropdown-item" href="{{ route('indexCategory') }}">Edit Category</a>
+                              </div>
                         </li>
                     @endif
                         <li class="nav-item">

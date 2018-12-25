@@ -55,3 +55,14 @@ Route::get('/checkout/{id}', 'CartController@checkout')->name('checkout');
 //view
 Route::get('/view/{id}', 'ViewController@index')->name('indexView');
 Route::get('/viewAll', 'ViewController@indexAll')->name('indexViewAll');
+
+//manage
+//middleware(kalo admin)
+Route::get('/indexUser', 'manageController@indexUser')->name('indexUser');
+
+Route::get('/indexCategory', 'manageController@indexCategory')->name('indexCategory');
+Route::get('/addCategory', 'manageController@indexAddCategory')->name('indexAddCategory');
+Route::post('/saveNewCategory', 'manageController@saveNewCategory')->name('saveNewCategory');
+Route::get('/editCategory/{id}', 'manageController@indexEditCategory')->name('indexEditCategory');
+Route::post('/saveEditedCategory/{id}', 'manageController@saveEditedCategory')->name('saveEditedCategory');
+Route::get('/deleteCategory/{id}', 'manageController@deleteCategory')->name('deleteCategory');

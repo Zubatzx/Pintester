@@ -67,6 +67,16 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                    @if(session()->get('isAdmin') == 1)
+                        <li class="nav-item">
+                            <a class="nav-link link text-white display-4" href=""><span class="mbri-change-style mbr-iconfont mbr-iconfont-btn"></span>
+                        Edit&nbsp;</a>
+                        </li>
+                    @endif
+                        <li class="nav-item">
+                            <a class="nav-link link text-white display-4" href="{{ route('indexView', ['id' => session()->get('userID')]) }}"><span class="mbri-photos mbr-iconfont mbr-iconfont-btn"></span>
+                        View&nbsp;</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link link text-white display-4" href="{{ route('myCart', ['id' => session()->get('userID')]) }}"><span class="mbri-shopping-cart mbr-iconfont mbr-iconfont-btn"></span>
                         Cart&nbsp;</a>

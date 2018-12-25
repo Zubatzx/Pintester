@@ -51,3 +51,7 @@ Route::post('/comment/{id}', 'PostController@addComment')->name('addComment');
 Route::get('/cart/{id}', 'CartController@index')->name('myCart');
 Route::get('/deleteFromCart/{id}', 'CartController@deleteFromCart')->name('deleteFromCart');
 Route::get('/checkout/{id}', 'CartController@checkout')->name('checkout');
+
+//view
+Route::get('/view/{id}', 'ViewController@index')->name('indexView');
+Route::get('/viewAll', 'ViewController@indexAll')->name('indexViewAll');

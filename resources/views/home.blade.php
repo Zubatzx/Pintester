@@ -77,7 +77,6 @@
                 $('#allPost').html(response);
             }
         });
- 2036abaf023a87ec2387f85b66b1a54b294fb109
     }
 </script>
 @endsection

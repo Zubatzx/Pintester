@@ -16,13 +16,13 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="media-container-column col-lg-8">          
-                <form action="" method="post">
+                <form action="{{route('saveEditedUser', ['id' => $user->userID])}}" method="post" id="editUser">
                 {{ csrf_field() }}
                 @if(isset($errors))
                     <p style="font-weight: bold; color: red">{{ $errors->first() }}</p>
                 @endif
-                    <div>
-                        <img style="object-fit: contain; height: 300px; width: 280px" src="{{asset('assets/images/users/'.$user->profilePicture)}}"/>
+                    <div class="row justify-content-md-center">
+                        <img class="rounded-circle" style="object-fit: contain; height: 320px; width: auto;" src="{{asset('assets/images/users/'.$user->profilePicture)}}"/>
                     </div>
                     <div class="row row-sm-offset">
                         <div class="col-md-10 multi-horizontal" data-for="id">
@@ -43,19 +43,23 @@
                                 <input type="email" class="form-control" name="email" value="{{ old('email') ? old('email') : $user->email }}"required>
                             </div>
                         </div>
-                        <!-- masih belom dpt data dari pilihan gender sebelumny -->
                         <div class="col-md-3 multi-horizontal" data-for="gender">
                             <div class="form-group">
                                 <label class="form-control-label mbr-fonts-style display-7" for="gender-form1-5">Gender</label>
                                 <select class="form-control" name="gender">
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
+                                    <option value="Male" @if($user->gender == 'Male') selected="selected" @endif>Male</option>
+                                    <option value="Female" @if($user->gender == 'Female') selected="selected" @endif>Female</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-                    
                 </form>
+            </div>
+            <!-- alasan gw taro diluar biar buttonny bisa lebih rapi -->
+            <div class="row justify-content-md-center col-md-12">
+                <a class="btn btn-primary col-md-3" href="{{route('indexUser')}}">Discard Changes</a>
+                <a class="btn btn-primary col-md-3" onclick="document.getElementById('editUser').submit()">Save Changes</a>
+                <a class="btn btn-secondary col-md-3" href="{{route('deleteUser', ['id' => $user->userID])}}">Delete User</a>
             </div>
         </div>
     </div>

@@ -58,7 +58,8 @@ Route::get('/viewAll', 'ViewController@indexAll')->name('indexViewAll');
 //middleware(kalo admin)
 Route::get('/indexUser', 'manageController@indexUser')->name('indexUser');
 Route::get('/editUser/{id}', 'manageController@indexEditUser')->name('indexEditUser');
-
+Route::post('/saveEditedUser/{id}', 'manageController@saveEditedUser')->name('saveEditedUser');
+Route::get('/deleteUser/{id}', 'manageController@deleteUser')->name('deleteUser');
 Route::get('/indexCategory', 'manageController@indexCategory')->name('indexCategory');
 Route::get('/addCategory', 'manageController@indexAddCategory')->name('indexAddCategory');
 Route::post('/saveNewCategory', 'manageController@saveNewCategory')->name('saveNewCategory');

@@ -11,7 +11,7 @@
                     </div>
                     <div class="posterText">
                         <p class="d-inline-block col-sm-6">{{$post[0]->username}}</p>
-                        @if(session()->get('name') != $post[0]->username OR session()->get('isAdmin') == 1)
+                        @if(session()->get('name') != "" AND session()->get('name') != $post[0]->username OR session()->get('isAdmin') == 1)
                             <a class="btn btn-sm btn-primary display-4" href="{{route('addToCart', ['user' => session()->get('userID'), 'id' => $post[0]->postID])}}">
                                 Add to Cart
                             </a>

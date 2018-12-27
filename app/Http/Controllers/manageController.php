@@ -21,6 +21,34 @@ class manageController extends Controller
     	return view('editUser', compact('user'));
     }
 
+    public function saveEditedUser($id, Request $request){
+        $validate = Validator::make($request->all(), [
+            'name' => 'required|min:5',
+            'email' => 'required|email|unique:users',
+            'gender' => 'required',
+        ]);
+
+        if($validate->fails()){
+            return redirect()->back()->withErrors($validate)->withInput($request->all());
+        }
+
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->gender = $request->gender;
+        $user->save();
+
+        return redirect()->back();
+    }
+
+    public function deleteUser($id){
+        //masih problem karena fk di table lain
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect('/indexUser');
+    }
+
     public function indexCategory(){
     	$categories = Category::all();
 
@@ -44,9 +72,7 @@ class manageController extends Controller
         $category->name = $request->name;
         $category->save();
 
-        $categories = Category::all();
-
-    	return view('manageCategory', compact('categories'));
+        return redirect('/indexCategory');
     }
 
     public function indexEditCategory($id){

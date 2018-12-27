@@ -14,11 +14,9 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function profile()
     {
-        $user = User::find($id);
-
-        return view('profile', compact('user'));
+        return view('profile');
     }
 
     /**
@@ -61,7 +59,8 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('home', compact('user'));
     }
 
     /**
@@ -74,7 +73,28 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         
-       //
+        $validate = Validator::make($request->all(), [
+            'name' => 'required|min:5',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|alpha_num|min:8',
+            'gender' => 'required'
+        ]);
+
+        if($validate->fails()){
+            return redirect()->back()->withErrors($validate)->withInput($request->all());
+        }
+
+        $update = User::find($id);
+        $update->name = $request->name;
+        $update->email = $request->email;
+        $update->password = $request->password;
+        $update->gender = $request->gender;
+        $update->isAdmin = 0;
+
+        $update->save();
+
+        return redirect()->back();
+      
     }
 
     /**

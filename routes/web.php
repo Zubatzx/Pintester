@@ -30,11 +30,6 @@ Route::get('/logout', 'LoginController@logOut')->name('logOut');
 //register
 Route::resource('register', 'RegisterController');
 
-//profile
-Route::get('/profile/{id}', 'ProfileController@index')->name('profile');
-//update
-Route::resource('update', 'UpdateController');
-
 //post
 Route::get('/post/{id}', 'PostController@index')->name('postDetail');
 
@@ -45,6 +40,9 @@ Route::post('/addpost', 'PostController@addPost')->name('addPost');
 Route::get('/deletepost/{id}', 'PostController@deletePost')->name('deletePost');
 Route::get('/addtocart/{user}/{id}', 'PostController@addToCart')->name('addToCart');
 Route::post('/comment/{id}', 'PostController@addComment')->name('addComment');
+Route::get('/profile/{id}','ProfileController@profile')->name('profile');
+Route::get('/profile/update/{id}','ProfileController@edit');
+Route::put('/profile/update/{id}','ProfileController@update');
 
 //cart
 //middleware(klo dah login)

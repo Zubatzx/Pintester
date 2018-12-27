@@ -41,6 +41,11 @@
                         </span>
                      </div>
                 </div>
+                <form action="{{ url('search') }}" method="post" id="search">
+                {{ csrf_field() }}
+                    <input type="text onEnter" placeholder="Search" name="key" style="width: 500px">
+                    <a onclick="document.getElementById('search').submit()"><span class="mbri-search btn-search"></span></a>
+                </form>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
                         <li class="nav-item">
@@ -65,6 +70,11 @@
                         </span>
                      </div>
                 </div>
+                <form action="{{ url('search') }}" method="post" id="search">
+                {{ csrf_field() }}
+                    <input type="text onEnter" placeholder="Search" name="key" style="width: 500px">
+                    <a onclick="document.getElementById('search').submit()"><span class="mbri-search btn-search"></span></a>
+                </form>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
                     @if(session()->get('isAdmin') == 1)
@@ -101,7 +111,7 @@
         <div class="row" style="transform: translateY(200%); z-index: 1000; background-color: #333333; color: white; font-size: 25px; position: fixed; width: 101%">
             <div class="col-md-6 mbr-fonts-style" align="left" style="width: 100%;">
             @if(session()->get('name') != "")
-                welcome, {{ session()->get('name') }}
+                Welcome, {{ session()->get('name') }}
             @endif
             </div>
             <div class="col-md-6 mbr-fonts-style" align="right" style="width: 100%">
@@ -191,11 +201,17 @@
                 document.getElementById('jam').innerHTML = h + ":" + m + ":" + s;
                 var t = setTimeout(startTime, 500);
             }
+
             function checkTime(i) {
                 if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
                 return i;
             }
+
+            $('.onEnter').keydown(function(e){
+                if(e.KeyCode == 13){
+                    this.form.submit();
+                }
+            });
         </script>
-        @yield('script')
     </body>
 </html>

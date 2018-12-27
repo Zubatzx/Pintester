@@ -33,15 +33,8 @@ class cartController extends Controller
         $cart = Cart::where('userID','=', Session::get('userID'))->first();
         $cart->totalPrice = $cart->totalPrice - $deletedItemPrice;
         $cart->save();
-
-        //panggil fungsi index lg
-        $cart = Cart::where('userID','=', Session::get('userID'))->first();
-
-        $cartDetailID = DB::table('detail_carts')->where('cartID', $cart->cartID)->select('postID');
-        $itemCount = $cartDetailID->count();
-        $cartDetail = DB::table('detail_carts')->join('posts', 'posts.postID', '=', 'detail_carts.postID')->join('users', 'posts.userID', '=', 'users.userID')->whereIn('posts.postID', $cartDetailID)->get();
-
-        return view('cart', compact('cart', 'itemCount', 'cartDetail'));
+        
+        return redirect('/cart/'.session()->get('userID'));
     }
 
     public function checkout($id){

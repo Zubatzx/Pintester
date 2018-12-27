@@ -9,7 +9,7 @@
             	<div class="mbr-white col-md-10">
                 	<h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">WELCOME TO PINTESTER</h1>
                 
-                	<p class="mbr-text pb-3 mbr-fonts-style display-5">Click any text to edit or style it. Select text to insert a link. Click blue "Gear" icon in the top right corner to hide/show buttons, text, title and change the block background. Click red "+" in the bottom right corner to add a new block. Use the top left menu to create new pages, sites and add themes.
+                	<p class="mbr-text pb-3 mbr-fonts-style display-5">Pintester is a website where people sell their arts to other users. User across the world can sells images they created or buys art images from another user as well.
                 	</p>
 
                     @if(session()->get('userID') == "")
@@ -23,17 +23,17 @@
 	<section class="mbr-gallery mbr-slider-carousel cid-raLPpNv8Ha" id="gallery1-4" style="padding-top: 20px;">
 		<div class="container">
         @if(session()->get('userID') != "")
-            <a class="btn btn-md btn-primary display-4 col-centered" id="btn-filter">Filter by My Followed Category</a>
+            <a class="btn btn-md btn-primary display-4 col-centered" href="{{ $url }}">{{ $text }}</a>
         @endif
-        	<div class="row col-sm-12 row-list" id="allPost">
+        	<div class="row col-sm-12 row-list">
                 @foreach($posts as $post)
                     <div class="p-3 col-md-6" style="margin: 10px 0px;">
                         <a href="{{ route('postDetail', ['id' => $post->postID]) }}">
                             <img class="card-img-top" src="{{asset('assets/images/posts/'.$post->picture)}}" alt="{{$post->title}}" style="object-fit: contain; height: 500px;">
                         </a>
                         <div>
-                            <p class="card-text text-center">{{$post->title}}</p>
-                            <p class="card-text text-center">{{$post->caption}}</p>
+                            <div class="card-text text-center title" display="block">{{$post->title}}</div>
+                            <div class="card-text text-center">{{$post->caption}}</div>
                         </div>
                     </div>
                 @endforeach
@@ -41,42 +41,4 @@
             </div>
     	</div>
 	</section>
-@endsection
-
-@section('script')
-<script type="text/javascript">
-    $('#btn-filter').click(function(){
-        if($('#btn-filter').text() == 'Filter by My Followed Category'){
-            filterByFollowedCategory();
-            $('#btn-filter').text('View All');
-        }else{
-            viewAll();
-            $('#btn-filter').text('Filter by My Followed Category');
-        }
-    });
-
-    function filterByFollowedCategory(){
-        $.ajax({
-            url: "{{route('filter')}}",
-            async: false,
-            dataType: "html",
-            success: function(response){
-                console.log(response);
-                $('#allPost').html(response);
-            }
-        });
-    }
-
-    function viewAll(){
-        $.ajax({
-            url: "{{route('viewAll')}}",
-            async: false,
-            dataType: "html",
-            success: function(response){
-                console.log(response);
-                $('#allPost').html(response);
-            }
-        });
-    }
-</script>
 @endsection

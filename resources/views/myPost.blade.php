@@ -17,8 +17,8 @@
                             <img class="card-img-top" src="{{asset('assets/images/posts/'.$post->picture)}}" alt="{{$post->title}}" style="object-fit: contain; height: 500px;">
                         </a>
                         <div>
-                            <p class="card-text text-center">{{$post->title}}</p>
-                            <p class="card-text text-center">{{$post->caption}}</p>
+                            <div class="card-text text-center title" display="block" style="margin-bottom: 0 !important;">{{$post->title}}</div>
+                            <div class="card-text text-center">{{$post->caption}}</div>
                         </div>
                     </div>
             @endforeach

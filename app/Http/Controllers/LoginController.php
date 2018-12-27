@@ -116,8 +116,9 @@ class LoginController extends Controller
             $data['email'] = $email;
             $data['password'] = $password;
 
-            $cookie = Cookie::make('data', $data, 60);
-
+            Cookie::queue('data', json_encode($data), 60);
+            //cara get cookie -> json_decode(Cookie::get('data'));
+            
             Session::put('userID', $id);
             Session::put('name', $name);
             Session::put('profilePicture', $pp);

@@ -5,6 +5,9 @@
 @section('content')
 	<section class="cid-raLSBQAxbV" id="image1-d">
         <div class="container">
+            @if(isset($errors))
+                <p style="font-weight: bold; color: red">{{ $errors->first() }}</p>
+            @endif
                 <div class="titleBox">
                     <div class="posterImage">
                         <img src="{{asset('assets/images/users/'.$post[0]->profilePicture)}}" alt="{{$post[0]->username}}" />
@@ -61,9 +64,6 @@
                             <button class="btn btn-default" type="submit">Add</button>
                         </div>
                     </form>
-                    @if(isset($errors))
-                        <p style="font-weight: bold; color: red">{{ $errors->first() }}</p>
-                    @endif
                 @endif
             </div>
             <!-- <div class="row col-sm-12 row-list">

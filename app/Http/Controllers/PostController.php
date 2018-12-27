@@ -11,6 +11,7 @@ use App\DetailComment;
 use App\Category;
 use App\Cart;
 use App\DetailCart;
+use Cookie;
 
 class PostController extends Controller
 {
@@ -168,6 +169,14 @@ class PostController extends Controller
     }
 
     public function addComment($id, Request $request){
+    	$validate = Validator::make($request->all(), [
+            'comment' => 'required'
+        ]);
+
+        if($validate->fails()){
+            return redirect()->back()->withErrors($validate)->withInput($request->all());
+        }
+
         $comment = new DetailComment();
         $comment->comment = $request->comment;
         $comment->userID = Session::get('userID');
@@ -180,5 +189,12 @@ class PostController extends Controller
         $comments = DB::table('detail_comments')->join('posts', 'detail_comments.postID', '=', 'posts.postID')->join('users', 'users.userID', '=', 'detail_comments.userID')->where('detail_comments.postID','=',$id)->select('detail_comments.comment','users.profilePicture', 'users.name')->get();
         
         return view('postDetail', compact('post', 'comments'));
+    }
+
+    public function search(Request $request){
+        $key = $request->key;
+        $posts = Post::where('title', 'like', '%'.$key.'%')->orWhere('caption', 'like', '%'.$key.'%')->get();
+
+        return view('searchPost', compact('key', 'posts'));
     }
 }

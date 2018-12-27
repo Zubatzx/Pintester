@@ -17,7 +17,9 @@ class HomeController extends Controller
     public function index()
     {
         $posts = DB::table('posts')->paginate(10);
-        return view('home', compact('posts'));
+        $url = "/filter";
+        $text = "Filter by My Followed Category";
+        return view('home', compact('posts', 'url', 'text'));
     }
 
     /**
@@ -88,14 +90,10 @@ class HomeController extends Controller
 
     public function filterByFollowedCategory(){
         $followedCategory = DB::table('followed_categories')->where('userID', '=', Session::get('userID'))->select('categoryID');
+
         $posts = DB::table('posts')->whereIn('categoryID', $followedCategory)->paginate(10);
-        
-        return response()->view('filterHome', compact('posts'));
-    }
-
-    public function viewAll(){
-        $posts = DB::table('posts')->paginate(10);
-
-        return response()->view('filterHome', compact('posts'));
+        $url = "/home";
+        $text = "View All";
+        return view('home', compact('posts', 'url', 'text'));
     }
 }

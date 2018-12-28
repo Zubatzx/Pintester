@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\User;
+use App\FollowedCategory;
 use DB;
 
 class ProfileController extends Controller
@@ -14,9 +15,11 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function profile()
+    public function indexProfile($id)
     {
-        return view('profile');
+        $user = User::find($id);
+
+        return view('profile', compact('user'));
     }
 
     /**
@@ -57,10 +60,9 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        $user = User::find($id);
-        return view('home', compact('user'));
+        //
     }
 
     /**
@@ -70,9 +72,8 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
-        
         $validate = Validator::make($request->all(), [
             'name' => 'required|min:5',
             'email' => 'required|email|unique:users',
@@ -89,12 +90,10 @@ class ProfileController extends Controller
         $update->email = $request->email;
         $update->password = $request->password;
         $update->gender = $request->gender;
-        $update->isAdmin = 0;
 
         $update->save();
 
         return redirect()->back();
-      
     }
 
     /**
@@ -106,5 +105,13 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function indexFollowedCategory($id){
+        $user = User::find($id);
+        $categories = "";
+        dd($categories);
+
+        return view('followedCategory', compact('user', 'categories'));
     }
 }

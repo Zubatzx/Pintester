@@ -51,10 +51,10 @@ Route::group(['middleware' => ['authLogin']], function(){
 
 //profile
 Route::group(['middleware' => ['authLogin']], function(){
-	Route::get('/profile/{id}','ProfileController@profile')->name('profile');
-	Route::get('/profile/update/{id}','ProfileController@edit');
-	Route::put('/profile/update/{id}','ProfileController@update');
-	//lanjutkan chris
+	Route::get('/profile/{id}','ProfileController@indexProfile')->name('myProfile');
+	Route::post('/saveEditedProfile/{id}', 'ProfileController@update')->name('saveEditedProfile');
+	Route::get('/profile/followedCategory/{id}','ProfileController@indexFollowedCategory')->name('myCategory');
+	//save followed category
 });
 
 //cart

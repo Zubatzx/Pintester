@@ -5,6 +5,13 @@
 @section('content')
 <section class="cid-raLSBQAxbV">
 	<div class="container">
+        <div class="row justify-content-center">
+            <div class="title col-12 col-lg-8">
+                <h2 class="mbr-section-title align-center pb-3 mbr-fonts-style display-2">
+                    My Post
+                </h2>
+            </div>
+        </div>
 		<div class="row col-sm-12 justify-content-center">
         	<a class="btn btn-md btn-primary display-4 col-centered" href="{{ route('createPost') }}">
                 <img src="{{asset('assets/images/u367.png')}}"/> &nbsp;Add

@@ -19,7 +19,7 @@
                 <form action="{{ url('saveNewCategory') }}" method="post">
                 {{ csrf_field() }}
                 @if(isset($errors))
-                    <p style="font-weight: bold; color: red">{{ $errors->first() }}</p>
+                    <p class="message">{{ $errors->first() }}</p>
                 @endif
                     <div class="row row-sm-offset">
                         <div class="col-md-10 multi-horizontal" data-for="name">

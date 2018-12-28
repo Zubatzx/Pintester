@@ -54,7 +54,8 @@ Route::group(['middleware' => ['authLogin']], function(){
 	Route::get('/profile/{id}','ProfileController@indexProfile')->name('myProfile');
 	Route::post('/saveEditedProfile/{id}', 'ProfileController@update')->name('saveEditedProfile');
 	Route::get('/profile/followedCategory/{id}','ProfileController@indexFollowedCategory')->name('myCategory');
-	//save followed category
+	Route::get('/addFollowedCategory/{id}', 'ProfileController@addFollowedCategory');
+	Route::get('/deleteFollowedCategory/{id}', 'ProfileController@deleteFollowedCategory');
 });
 
 //cart
@@ -65,8 +66,10 @@ Route::group(['middleware' => ['authLogin']], function(){
 });
 
 //view
-Route::group(['middleware' => ['authAdmin']], function(){
+Route::group(['middleware' => ['authLogin']], function(){
 	Route::get('/view/{id}', 'ViewController@index')->name('indexView');
+});
+Route::group(['middleware' => ['authAdmin']], function(){
 	Route::get('/viewAll', 'ViewController@indexAll')->name('indexViewAll');
 });
 

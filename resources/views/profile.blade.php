@@ -34,7 +34,7 @@
           <form action="{{ route('saveEditedProfile', ['id' => $user->userID ]) }}" method="post">
             {{ csrf_field() }}
             @if(isset($errors))
-              <p style="font-weight: bold; color: red">{{ $errors->first() }}</p>
+              <p class="message">{{ $errors->first() }}</p>
             @endif
             <div class="col-md-10 multi-horizontal">
               <div class="form-group">

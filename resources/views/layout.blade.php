@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" href="assets/images/peats-96x96.png" type="image/x-icon">
+        <link rel="shortcut icon" href="{{ asset('assets/images/peats-96x96.png') }}" type="image/x-icon">
         <title>Pintester - @yield('title')</title>
 
         <!-- Fonts -->
@@ -22,6 +22,7 @@
         <link rel="stylesheet" href="{{ asset('assets/comment/style.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/global/global.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/axure/styles.css') }}">
+        <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
         <style>
 
         </style>
@@ -190,6 +191,7 @@
         <script src="{{ asset('assets/touchswipe/jquery.touch-swipe.min.js') }}"></script>
         <script src="{{ asset('assets/parallax/jarallax.min.js') }}"></script>
         <script src="{{ asset('assets/theme/js/script.js') }}"></script>
+        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
         <script>
             function startTime() {
                 var today = new Date();
@@ -207,5 +209,6 @@
                 return i;
             }
         </script>
+        @yield('script')
     </body>
 </html>

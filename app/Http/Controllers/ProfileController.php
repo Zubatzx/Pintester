@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\User;
+use App\Category;
 use App\FollowedCategory;
 use DB;
 
@@ -109,9 +110,31 @@ class ProfileController extends Controller
 
     public function indexFollowedCategory($id){
         $user = User::find($id);
-        $categories = "";
-        dd($categories);
+        $categories = Category::all();
+        $followedCategories = FollowedCategory::where('userID', '=', $id)->get(['categoryID']);
 
-        return view('followedCategory', compact('user', 'categories'));
+        return view('followedCategory', compact('user', 'categories', 'followedCategories'));
+    }
+
+    public function addFollowedCategory($id){
+        $userID = session()->get('userID');
+        $categoryID = $id;
+
+        $followedCategory = new FollowedCategory();
+        $followedCategory->userID = $userID;
+        $followedCategory->categoryID = $categoryID;
+        
+        $followedCategory->save();
+        
+        return response()->json("success");
+    }
+
+    public function deleteFollowedCategory($id){
+        $userID = session()->get('userID');
+        $categoryID = $id;
+
+        $followedCategory = FollowedCategory::where('userID', '=', $userID)->where('categoryID', '=', $categoryID)->delete();
+
+        return response()->json("success");
     }
 }

@@ -19,7 +19,7 @@
                 <form action="{{route('saveEditedUser', ['id' => $user->userID])}}" method="post" id="editUser">
                 {{ csrf_field() }}
                 @if(isset($errors))
-                    <p style="font-weight: bold; color: red">{{ $errors->first() }}</p>
+                    <p class="message">{{ $errors->first() }}</p>
                 @endif
                     <div class="row justify-content-md-center">
                         <img class="rounded-circle" style="object-fit: contain; height: 320px; width: auto;" src="{{asset('assets/images/users/'.$user->profilePicture)}}"/>

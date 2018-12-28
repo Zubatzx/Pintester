@@ -16,3 +16,7 @@
 .bold{
 	font-weight: bold;
 }
+.message{
+	font-weight: bold;
+	color: red;
+}

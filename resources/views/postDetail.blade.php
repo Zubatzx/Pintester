@@ -6,7 +6,7 @@
 	<section class="cid-raLSBQAxbV" id="image1-d">
         <div class="container">
             @if(isset($errors))
-                <p style="font-weight: bold; color: red">{{ $errors->first() }}</p>
+                <p class="message">{{ $errors->first() }}</p>
             @endif
                 <div class="titleBox">
                     <div class="posterImage">

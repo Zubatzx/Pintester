@@ -65,8 +65,8 @@ Route::group(['middleware' => ['authLogin']], function(){
 });
 
 //view
-Route::get('/view/{id}', 'ViewController@index')->name('indexView');
 Route::group(['middleware' => ['authAdmin']], function(){
+	Route::get('/view/{id}', 'ViewController@index')->name('indexView');
 	Route::get('/viewAll', 'ViewController@indexAll')->name('indexViewAll');
 });
 

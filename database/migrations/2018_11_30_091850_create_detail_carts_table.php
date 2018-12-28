@@ -17,10 +17,10 @@ class CreateDetailCartsTable extends Migration
             $table->increments('detailCartID');
 
             $table->integer('cartID')->unsigned();
-            $table->foreign('cartID')->references('cartID')->on('carts');
+            $table->foreign('cartID')->references('cartID')->on('carts')->onDelete('cascade');
 
             $table->integer('postID')->unsigned();
-            $table->foreign('postID')->references('postID')->on('posts');
+            $table->foreign('postID')->references('postID')->on('posts')->onDelete('cascade');
 
             $table->timestamps();
         });

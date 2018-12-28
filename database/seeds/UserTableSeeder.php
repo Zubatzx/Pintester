@@ -22,7 +22,7 @@ class UserTableSeeder extends Seeder
         ],[
         	'name' => 'admin',
         	'email' => 'admin@gmail.com',
-        	'password' => 'admin',
+        	'password' => 'adminnnn',
         	'gender' => 'Male',
         	'profilePicture' => 'user2.jpg',
         	'isAdmin' => '1'

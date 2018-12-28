@@ -17,7 +17,7 @@ class cartController extends Controller
 
         $cartDetailID = DB::table('detail_carts')->where('cartID', $cart->cartID)->select('postID');
         $itemCount = $cartDetailID->count();
-        $cartDetail = DB::table('detail_carts')->join('posts', 'posts.postID', '=', 'detail_carts.postID')->join('users', 'posts.userID', '=', 'users.userID')->whereIn('posts.postID', $cartDetailID)->get();
+        $cartDetail = DB::table('detail_carts')->join('posts', 'posts.postID', '=', 'detail_carts.postID')->join('users', 'posts.userID', '=', 'users.userID')->whereIn('posts.postID', $cartDetailID)->where('cartID', '=', $id)->get();
         //kelupaan, harusnya bisa bikin attribute baru di databes
 
         return view('cart', compact('cart', 'itemCount', 'cartDetail'));

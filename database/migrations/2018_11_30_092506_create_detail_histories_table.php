@@ -17,10 +17,10 @@ class CreateDetailHistoriesTable extends Migration
             $table->increments('detailHistoryID');
 
             $table->integer('historyID')->unsigned();
-            $table->foreign('historyID')->references('historyID')->on('histories');
+            $table->foreign('historyID')->references('historyID')->on('histories')->onDelete('cascade');
 
             $table->integer('postID')->unsigned();
-            $table->foreign('postID')->references('postID')->on('posts');
+            $table->foreign('postID')->references('postID')->on('posts')->onDelete('cascade');
 
             $table->timestamps();
         });

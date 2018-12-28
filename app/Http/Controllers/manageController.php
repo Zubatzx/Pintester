@@ -42,7 +42,6 @@ class manageController extends Controller
     }
 
     public function deleteUser($id){
-        //masih problem karena fk di table lain
         $user = User::find($id);
         $user->delete();
 
@@ -100,7 +99,6 @@ class manageController extends Controller
     }
 
     public function deleteCategory($id){
-    	//masih problem karena fk di table lain
     	$category = Category::find($id);
     	$category->delete();
 

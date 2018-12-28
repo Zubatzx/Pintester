@@ -5,6 +5,13 @@
 @section('content')
 <section class="cid-raLSBQAxbV">
 	<div class="container">
+		<div class="row justify-content-center">
+            <div class="title col-12 col-lg-8">
+                <h2 class="mbr-section-title align-center pb-3 mbr-fonts-style display-2">
+                    Manage User
+                </h2>
+            </div>
+        </div>
 		<table class="table table-striped">
 			<thead>
 				<tr>

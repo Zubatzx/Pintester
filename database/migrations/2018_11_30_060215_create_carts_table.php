@@ -17,7 +17,7 @@ class CreateCartsTable extends Migration
             $table->increments('cartID');
 
             $table->integer('userID')->unsigned();
-            $table->foreign('userID')->references('userID')->on('users');
+            $table->foreign('userID')->references('userID')->on('users')->onDelete('cascade');
 
             $table->integer('totalPrice');
 

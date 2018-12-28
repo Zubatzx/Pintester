@@ -43,7 +43,7 @@
                 </div>
                 <form action="{{ url('search') }}" method="post" id="search">
                 {{ csrf_field() }}
-                    <input type="text onEnter" placeholder="Search" name="key" style="width: 500px">
+                    <input type="text" placeholder="Search" name="key" style="width: 500px">
                     <a onclick="document.getElementById('search').submit()"><span class="mbri-search btn-search"></span></a>
                 </form>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -72,7 +72,7 @@
                 </div>
                 <form action="{{ url('search') }}" method="post" id="search">
                 {{ csrf_field() }}
-                    <input type="text onEnter" placeholder="Search" name="key" style="width: 500px">
+                    <input type="text" placeholder="Search" name="key" style="width: 500px">
                     <a onclick="document.getElementById('search').submit()"><span class="mbri-search btn-search"></span></a>
                 </form>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -206,12 +206,6 @@
                 if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
                 return i;
             }
-
-            $('.onEnter').keydown(function(e){
-                if(e.KeyCode == 13){
-                    this.form.submit();
-                }
-            });
         </script>
     </body>
 </html>

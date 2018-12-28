@@ -17,10 +17,10 @@ class CreateFollowedCategoriesTable extends Migration
             $table->increments('followedCategoryID');
 
             $table->integer('userID')->unsigned();
-            $table->foreign('userID')->references('userID')->on('users');
+            $table->foreign('userID')->references('userID')->on('users')->onDelete('cascade');
 
             $table->integer('categoryID')->unsigned();
-            $table->foreign('categoryID')->references('categoryID')->on('categories');
+            $table->foreign('categoryID')->references('categoryID')->on('categories')->onDelete('cascade');
 
             $table->timestamps();
         });

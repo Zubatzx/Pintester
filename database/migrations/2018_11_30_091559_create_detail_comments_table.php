@@ -18,10 +18,10 @@ class CreateDetailCommentsTable extends Migration
             $table->string('comment');
 
             $table->integer('userID')->unsigned();
-            $table->foreign('userID')->references('userID')->on('users');
+            $table->foreign('userID')->references('userID')->on('users')->onDelete('cascade');
 
             $table->integer('postID')->unsigned();
-            $table->foreign('postID')->references('postID')->on('posts');
+            $table->foreign('postID')->references('postID')->on('posts')->onDelete('cascade');
 
             $table->timestamps();
         });

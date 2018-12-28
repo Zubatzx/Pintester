@@ -10,7 +10,7 @@
             @endif
                 <div class="titleBox">
                     <div class="posterImage">
-                        <img src="{{asset('assets/images/users/'.$post[0]->profilePicture)}}" alt="{{$post[0]->username}}" />
+                        <img class="rounded-img" src="{{asset('assets/images/users/'.$post[0]->profilePicture)}}" alt="{{$post[0]->username}}" />
                     </div>
                     <div class="posterText">
                         <p class="d-inline-block col-sm-6">{{$post[0]->username}}</p>
@@ -29,18 +29,21 @@
 
                 <div class="commentBox">
                     <div class="posterText">
-                        <p align="center">Title : {{$post[0]->title}}</p>
-                        <p align="center">Category : {{$post[0]->category}}</p>
+                        <div class="title" style="margin-bottom: 0 !important; margin-left: 0" align="center">{{$post[0]->title}}</div>
+                        <div align="center">{{$post[0]->category}}</div>
                     </div>
                     <div>
                         <img class="card-img-top" src="{{asset('assets/images/posts/'.$post[0]->picture)}}" alt="{{$post[0]->title}}" style="object-fit: contain; height: 500px;">
                     </div>
                     <div class="posterText">
-                        <p align="center">Caption : {{$post[0]->caption}}</p>
+                        <div class="txt">{{$post[0]->caption}}</div>
                     </div>
                 </div>
+                <hr>
                 @if(session()->get('userID') != "")
                     <div class="actionBox">
+                        <div class="txt">Comments</div>
+                        <hr>
                         <ul class="commentList">
                             @foreach($comments as $comment)
                             <li>
@@ -48,11 +51,12 @@
                                     <img src="{{asset('assets/images/users/'.$comment->profilePicture)}}" alt="{{$comment->name}}" />
                                 </div>
                                 <div class="commentText">
-                                    <p class="">{{$comment->name}}</p>
+                                    <p class="bold">{{$comment->name}}</p>
                                     <p class="">{{$comment->comment}}</p>
 
                                 </div>
                             </li>
+                            <hr>
                             @endforeach
                         </ul>
                     <form class="form-inline" role="form" action="{{ route('addComment', ['id' => $post[0]->postID]) }}" method="post">

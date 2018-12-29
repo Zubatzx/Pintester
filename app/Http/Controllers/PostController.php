@@ -164,7 +164,7 @@ class PostController extends Controller
 
             return redirect()->back();
         }else{
-            return redirect()->back()->withErrors("Item sudah ada di cart!!");
+            return redirect()->back()->withErrors("Item already in cart !!!");
         }
     }
 

@@ -93,9 +93,7 @@ class manageController extends Controller
         $category->name = $request->name;
         $category->save();
 
-        $categories = Category::all();
-
-    	return view('manageCategory', compact('categories'));
+        return redirect('/indexCategory');
     }
 
     public function deleteCategory($id){

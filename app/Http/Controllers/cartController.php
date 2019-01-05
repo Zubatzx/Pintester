@@ -13,12 +13,12 @@ use App\DetailHistory;
 class cartController extends Controller
 {
     public function index($id){
+        //masuk ke page cart berdasarkan userID yang login
     	$cart = Cart::where('userID','=', $id)->first();
 
         $cartDetailID = DB::table('detail_carts')->where('cartID', $cart->cartID)->select('postID');
         $itemCount = $cartDetailID->count();
         $cartDetail = DB::table('detail_carts')->join('posts', 'posts.postID', '=', 'detail_carts.postID')->join('users', 'posts.userID', '=', 'users.userID')->whereIn('posts.postID', $cartDetailID)->where('cartID', '=', $id)->get();
-        //kelupaan, harusnya bisa bikin attribute baru di databes
 
         return view('cart', compact('cart', 'itemCount', 'cartDetail'));
     }
@@ -38,6 +38,7 @@ class cartController extends Controller
     }
 
     public function checkout($id){
+        //ambil data dari cart
         $cart = Cart::find($id);
 
         //save ke table history

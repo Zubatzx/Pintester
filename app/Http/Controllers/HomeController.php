@@ -16,6 +16,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        //masuk ke menu home
         $posts = DB::table('posts')->paginate(10);
         $url = "/filter";
         $text = "Filter by My Followed Category";
@@ -89,6 +90,7 @@ class HomeController extends Controller
     }
 
     public function filterByFollowedCategory(){
+        //filter menu home berdasarkan category yang diikuti
         $followedCategory = DB::table('followed_categories')->where('userID', '=', Session::get('userID'))->select('categoryID');
 
         $posts = DB::table('posts')->whereIn('categoryID', $followedCategory)->paginate(10);

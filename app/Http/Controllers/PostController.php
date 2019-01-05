@@ -22,6 +22,7 @@ class PostController extends Controller
      */
     public function index($id)
     {
+        //masuk ke page post
         $post = DB::table('posts')->join('users', 'posts.userID', '=', 'users.userID')->join('categories', 'posts.categoryID', '=', 'categories.categoryID')->where('posts.postID','=',$id)->select('posts.*','users.name as username','users.profilePicture', 'categories.name as category')->get();
 
         $comments = DB::table('detail_comments')->join('posts', 'detail_comments.postID', '=', 'posts.postID')->join('users', 'users.userID', '=', 'detail_comments.userID')->where('detail_comments.postID','=',$id)->select('detail_comments.comment','users.profilePicture', 'users.name')->orderBy('detail_comments.created_at', 'ASC')->get();
@@ -96,18 +97,21 @@ class PostController extends Controller
     }
 
     public function myPostIndex($id){
+        //masuk ke page mypost
         $myposts = DB::table('posts')->join('users', 'posts.userID', '=', 'users.userID')->join('categories', 'posts.categoryID', '=', 'categories.categoryID')->where('posts.userID','=',$id)->select('posts.*','users.name as username','users.profilePicture', 'categories.name as category')->paginate(5);
 
         return view('myPost', compact('myposts'));
     }
 
     public function createPostIndex(){
+        //masuk ke page createPost
         $categories = Category::all();
         
         return view('createPost', compact('categories'));
     }
 
     public function addPost(Request $request){
+        //save post yang baru dimasukkin
         $validate = Validator::make($request->all(), [
             'title' => 'required|min:20|max:200',
             'caption' => 'required',
@@ -142,12 +146,14 @@ class PostController extends Controller
     }
 
     public function deletePost($id){
+        //hapus post
         $deletePost = Post::find($id)->delete();
 
         return redirect('/home');
     }
 
     public function addToCart($user, $id){
+        //masukin post ke cart
         $cart = Cart::where('userID','=', $user)->first();
         $detailCart = DetailCart::where('postID', '=', $id)->where('cartID', '=', $cart->cartID)->get();
 
@@ -169,6 +175,7 @@ class PostController extends Controller
     }
 
     public function addComment($id, Request $request){
+        //tambah comment
     	$validate = Validator::make($request->all(), [
             'comment' => 'required'
         ]);
@@ -188,6 +195,7 @@ class PostController extends Controller
     }
 
     public function search(Request $request){
+        //search post by title or caption
         $key = $request->key;
         $posts = Post::where('title', 'like', '%'.$key.'%')->orWhere('caption', 'like', '%'.$key.'%')->get();
 

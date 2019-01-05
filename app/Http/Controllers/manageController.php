@@ -10,18 +10,21 @@ use App\Category;
 class manageController extends Controller
 {
     public function indexUser(){
+        //masuk ke page manageUser
     	$users = User::all();
     	
     	return view('manageUser', compact('users'));
     }
 
     public function indexEditUser($id){
+        //masuk ke page editUser beserta data user yang diedit
     	$user = User::find($id);
 
     	return view('editUser', compact('user'));
     }
 
     public function saveEditedUser($id, Request $request){
+        //save data user yang diedit
         $validate = Validator::make($request->all(), [
             'name' => 'required|min:5',
             'email' => 'required|email|unique:users',
@@ -42,6 +45,7 @@ class manageController extends Controller
     }
 
     public function deleteUser($id){
+        //hapus user
         $user = User::find($id);
         $user->delete();
 
@@ -49,16 +53,19 @@ class manageController extends Controller
     }
 
     public function indexCategory(){
+        //masuk ke page manageCategory
     	$categories = Category::all();
 
     	return view('manageCategory', compact('categories'));
     }
 
     public function indexAddCategory(){
+        //masuk ke page addCategory
     	return view('addCategory');
     }
 
     public function saveNewCategory(Request $request){
+        //save new Category
     	$validate = Validator::make($request->all(), [
             'name' => 'required|min:3|max:20'
         ]);
@@ -75,12 +82,14 @@ class manageController extends Controller
     }
 
     public function indexEditCategory($id){
+        //masuk ke page editCategory dengan data category yang dipilih
     	$category = Category::find($id);
 
     	return view('editCategory', compact('category'));
     }
 
     public function saveEditedCategory($id, Request $request){
+        //simpen category yang diedit
     	$validate = Validator::make($request->all(), [
             'name' => 'required|min:3|max:20'
         ]);
@@ -97,6 +106,7 @@ class manageController extends Controller
     }
 
     public function deleteCategory($id){
+        //hapus category
     	$category = Category::find($id);
     	$category->delete();
 

@@ -8,6 +8,7 @@ use Cookie;
 use DB;
 use Session;
 use App\User;
+use Hash;
 
 class LoginController extends Controller
 {
@@ -18,6 +19,7 @@ class LoginController extends Controller
      */
     public function index()
     {
+        //masuk ke page login
         return view('login');
     }
 
@@ -88,9 +90,11 @@ class LoginController extends Controller
     }
 
     public function logIn(Request $request){
+        //function buat login
         $email = $request->email;
         $password = $request->password;
 
+        //validasi input di backend
         $validate = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required|alpha_num|min:8'
@@ -100,12 +104,23 @@ class LoginController extends Controller
             return redirect()->back()->withErrors($validate);
         }
 
-        $userID = DB::table('users')->where('email','=',$email)->where('password','=',$password)->select('userID')->value('userID');
-        $user = User::find($userID);
+        //ambil userID
+        $userID = DB::table('users')->where('email','=',$email)->first();        
         
+        //kalau user gaada
         if($userID == null){
             return redirect()->back()->withErrors("User not found !!!");
         }else{
+            //ambil data lengkap user
+            $user = User::find($userID->userID);
+
+            //check password
+            $checkPassword = Hash::check($password, $user->password);
+            //kalo salah redirect dgn errormsg
+            if($checkPassword == false){
+                return redirect()->back()->withErrors("Wrong Password !!!");
+            }
+
             $id = $user->userID;
             $name = $user->name;
             $email = $user->email;
@@ -130,6 +145,7 @@ class LoginController extends Controller
     }
 
     public function logOut(){
+        //flush session buat logout
         Session::flush();
         return redirect()->back();
     }

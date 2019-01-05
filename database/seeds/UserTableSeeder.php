@@ -15,14 +15,14 @@ class UserTableSeeder extends Seeder
         [
         	'name' => 'Aditya',
         	'email' => 'adityabudiman@gmail.com',
-        	'password' => 'inginjadisultan',
+        	'password' => bcrypt('inginjadisultan'),
         	'gender' => 'Male',
         	'profilePicture' => 'user1.jpg',
         	'isAdmin' => '0'
         ],[
         	'name' => 'admin',
         	'email' => 'admin@gmail.com',
-        	'password' => 'adminnnn',
+        	'password' => bcrypt('adminnnn'),
         	'gender' => 'Male',
         	'profilePicture' => 'user2.jpg',
         	'isAdmin' => '1'
@@ -30,7 +30,7 @@ class UserTableSeeder extends Seeder
         [
             'name' => 'Leon',
             'email' => 'leonsama@gmail.com',
-            'password' => 'inginbunuhzombie',
+            'password' => bcrypt('inginbunuhzombie'),
             'gender' => 'Male',
             'profilePicture' => 'user3.jpg',
             'isAdmin' => '0'
@@ -38,7 +38,7 @@ class UserTableSeeder extends Seeder
         [
             'name' => 'Tsukasa',
             'email' => 'tsukasarider@gmail.com',
-            'password' => 'rideryanghanyalewat',
+            'password' => bcrypt('rideryanghanyalewat'),
             'gender' => 'Male',
             'profilePicture' => 'user4.jpg',
             'isAdmin' => '0'

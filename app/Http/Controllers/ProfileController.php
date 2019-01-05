@@ -18,6 +18,7 @@ class ProfileController extends Controller
      */
     public function indexProfile($id)
     {
+        //masuk ke profilePage beserta datanya
         $user = User::find($id);
 
         return view('profile', compact('user'));
@@ -75,6 +76,7 @@ class ProfileController extends Controller
      */
     public function update($id, Request $request)
     {
+        //update data yang diedit
         $validate = Validator::make($request->all(), [
             'name' => 'required|min:5',
             'email' => 'required|email|unique:users',
@@ -89,7 +91,7 @@ class ProfileController extends Controller
         $update = User::find($id);
         $update->name = $request->name;
         $update->email = $request->email;
-        $update->password = $request->password;
+        $update->password = bcrypt($request->password);
         $update->gender = $request->gender;
 
         $update->save();
@@ -109,6 +111,7 @@ class ProfileController extends Controller
     }
 
     public function indexFollowedCategory($id){
+        //masuk ke page followedCategory
         $user = User::find($id);
         $categories = Category::all();
         $followedCategories = FollowedCategory::where('userID', '=', $id)->get(['categoryID']);
@@ -117,6 +120,7 @@ class ProfileController extends Controller
     }
 
     public function addFollowedCategory($id){
+        //nambah followedCategory
         $userID = session()->get('userID');
         $categoryID = $id;
 
@@ -130,6 +134,7 @@ class ProfileController extends Controller
     }
 
     public function deleteFollowedCategory($id){
+        //hapus category yang diikuti
         $userID = session()->get('userID');
         $categoryID = $id;
 

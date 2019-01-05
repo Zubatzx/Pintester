@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\User;
 use App\Cart;
 use DB;
+use Hash;
 
 class RegisterController extends Controller
 {
@@ -17,6 +18,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
+        //masuk ke page register
         return view('register');
     }
 
@@ -38,6 +40,7 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
+        //save data register
         $validate = Validator::make($request->all(), [
             'name' => 'required|min:5',
             'email' => 'required|email|unique:users',
@@ -54,7 +57,7 @@ class RegisterController extends Controller
         $insert = new User();
         $insert->name = $request->name;
         $insert->email = $request->email;
-        $insert->password = $request->password;
+        $insert->password = bcrypt($request->password);
         $insert->gender = $request->gender;
         $insert->profilePicture = "";
         $insert->isAdmin = 0;
@@ -74,7 +77,7 @@ class RegisterController extends Controller
         $cart->totalPrice = 0;
 
         $cart->save();
-        
+
         return redirect()->back();
     }
 
@@ -109,8 +112,8 @@ class RegisterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-      
+
+
     }
 
     /**
